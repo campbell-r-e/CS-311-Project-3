@@ -9,3 +9,29 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Ingredients {
+  id        Int      @id @default(autoincrement()) // Primary key
+  Ingredient    String   @unique
+  
+  
+ 
+}
+
+model cooking_methods {
+  id        Int      @id @default(autoincrement()) // Primary key
+  methods     String   @unique
+  
+}
+model cooking_steps {
+  id        Int      @id @default(autoincrement()) // Primary key
+  step     String   @unique
+
+}
+
+model Tag {
+  id        Int      @id @default(autoincrement()) // Primary key
+  tag     String   @unique
+ 
+}
+
