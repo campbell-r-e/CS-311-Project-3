@@ -58,6 +58,13 @@ export default function MyForm() {
 
 
 const tag_validator = () => {
+ 
+  if(tag==null || tag==""){
+    setTagError("Tag can not be empty.");
+    setTagError("");
+     
+     return false;
+  }
    
    if(tag.length<2){
      setTagError("tag name is to short needs minimum of 2 characters");
@@ -65,6 +72,7 @@ const tag_validator = () => {
       
       return false;
    }
+   settag(tag.trim());
    if(tag.length>10){
     setTagError("Ingredients are limited to 10 characters")
     setTagError("")
