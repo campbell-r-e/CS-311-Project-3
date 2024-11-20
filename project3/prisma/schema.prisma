@@ -11,26 +11,29 @@ datasource db {
 }
 
 model Ingredients {
-  id        Int      @id @default(autoincrement()) // Primary key
+  id        Int      @id @default(autoincrement()) 
   Ingredient    String   @unique
+ 
   
   
  
 }
 
 model cooking_methods {
-  id        Int      @id @default(autoincrement()) // Primary key
+  id        Int      @id @default(autoincrement()) 
   methods     String   @unique
+
   
 }
 model cooking_steps {
-  id        Int      @id @default(autoincrement()) // Primary key
+  id        Int      @id @default(autoincrement()) 
   step     String   @unique
+
 
 }
 
 model Tag {
-  id        Int      @id @default(autoincrement()) // Primary key
+  id        Int      @id @default(autoincrement()) 
   tag     String   @unique
  
 }
