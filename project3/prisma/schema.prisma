@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,31 +7,56 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Ingredients {
-  id        Int      @id @default(autoincrement()) 
-  Ingredient    String   @unique
- 
-  
-  
- 
+model Ingredient {
+  id          Int       @id @default(autoincrement()) 
+  name        String    @unique                      
+  recipes     RecipeIngredient[]
+  tags        IngredientTag[]                        
 }
 
-model cooking_methods {
-  id        Int      @id @default(autoincrement()) 
-  methods     String   @unique
-
-  
+model CookingMethod {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique                      
+  recipes     Recipe[]
 }
-model cooking_steps {
-  id        Int      @id @default(autoincrement()) 
-  step     String   @unique
 
-
+model CookingStep {
+  id          Int       @id @default(autoincrement()) 
+  description String                                   
+  order       Int                                    
+  recipeId    Int                                   
+  recipe      Recipe      @relation(fields: [recipeId], references: [id])
 }
 
 model Tag {
-  id        Int      @id @default(autoincrement()) 
-  tag     String   @unique
- 
+  id          Int       @id @default(autoincrement())
+  name        String    @unique                    
+  ingredients IngredientTag[]
+}
+
+model Recipe {
+  id            Int                @id @default(autoincrement()) 
+  title         String                                              
+  description   String?                                             
+  ingredients   RecipeIngredient[]
+  methods       CookingMethod[] @relation("RecipeToCookingMethod")
+  steps         CookingStep[]
+}
+
+model RecipeIngredient {
+  id            Int       @id @default(autoincrement()) 
+  recipeId      Int                                   
+  ingredientId  Int                                  
+  quantity      String                                
+  recipe        Recipe      @relation(fields: [recipeId], references: [id])
+  ingredient    Ingredient  @relation(fields: [ingredientId], references: [id])
+}
+
+model IngredientTag {
+  id            Int       @id @default(autoincrement()) 
+  ingredientId  Int                                    
+  tagId         Int                                  
+  ingredient    Ingredient  @relation(fields: [ingredientId], references: [id])
+  tag           Tag         @relation(fields: [tagId], references: [id])
 }
 
