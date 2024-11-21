@@ -15,9 +15,9 @@ export default function Render(){
         }
       }, []);
     return(
-        <div>
+        <div  className='bg-gray-50 min-h-screen flex items-center justify-center'>
         
-        <div id="root">
+        <div id="root" className='bg-black'>
             
 
 
