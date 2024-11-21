@@ -23,13 +23,16 @@ export default function Render(){
 
   
         </div>
-        <motion.button
+        <div className='bg-black'>
+        <motion.button 
+        
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         onHoverStart={() => console.log('hover started!')}
       >
         Animated Button
       </motion.button>
+      </div>
 
         </div>
     )
