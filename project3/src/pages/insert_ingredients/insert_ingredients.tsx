@@ -1,6 +1,7 @@
 import React from 'react';
 import MyForm from './MyForm';
 import ReactDOM from 'react-dom/client';
+import { motion } from "framer-motion"
 
 
 export default function Render(){
@@ -14,8 +15,23 @@ export default function Render(){
         }
       }, []);
     return(
+        <div>
+        
+        <div id="root">
+            
 
-        <div id="root"></div>
+
+  
+        </div>
+        <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        onHoverStart={() => console.log('hover started!')}
+      >
+        Animated Button
+      </motion.button>
+
+        </div>
     )
 }
 
