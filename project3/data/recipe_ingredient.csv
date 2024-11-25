@@ -1,0 +1,6 @@
+id,recipeId,ingredientId,quantity
+1,1,4,200g
+2,1,5,10g
+3,2,1,300g
+4,2,3,5g
+5,3,2,150g

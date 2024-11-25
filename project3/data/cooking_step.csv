@@ -1,0 +1,7 @@
+id,description,order,recipeId
+1,Marinate chicken with spices,1,1
+2,Grill the chicken until cooked,2,1
+3,Boil tomatoes until soft,1,2
+4,Blend tomatoes into soup,2,2
+5,Dip onion rings in batter,1,3
+6,Fry onion rings until golden,2,3
