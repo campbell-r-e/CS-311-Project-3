@@ -8,55 +8,54 @@ datasource db {
 }
 
 model Ingredient {
-  id          Int       @id @default(autoincrement()) 
-  name        String    @unique                      
-  recipes     RecipeIngredient[]
-  tags        IngredientTag[]                        
-}
-
-model CookingMethod {
-  id          Int       @id @default(autoincrement())
-  name        String    @unique                      
-  recipes     Recipe[]
+  id      Int                @id @default(autoincrement())
+  name    String             @unique
+  recipes RecipeIngredient[]
+  tags    IngredientTag[]
 }
 
 model CookingStep {
-  id          Int       @id @default(autoincrement()) 
-  description String                                   
-  order       Int                                    
-  recipeId    Int                                   
-  recipe      Recipe      @relation(fields: [recipeId], references: [id])
+  id          Int    @id @default(autoincrement())
+  description String
+  order       Int
+  recipeId    Int
+  recipe      Recipe @relation(fields: [recipeId], references: [id])
 }
 
 model Tag {
-  id          Int       @id @default(autoincrement())
-  name        String    @unique                    
+  id          Int             @id @default(autoincrement())
+  name        String          @unique
   ingredients IngredientTag[]
 }
 
+model CookingMethod {
+  id      Int      @id @default(autoincrement())
+  name    String   @unique
+  recipes Recipe[] @relation("RecipeToCookingMethod")
+}
+
 model Recipe {
-  id            Int                @id @default(autoincrement()) 
-  title         String                                              
-  description   String?                                             
-  ingredients   RecipeIngredient[]
-  methods       CookingMethod[] @relation("RecipeToCookingMethod")
-  steps         CookingStep[]
+  id          Int                @id @default(autoincrement())
+  title       String
+  description String?
+  ingredients RecipeIngredient[]
+  methods     CookingMethod[]    @relation("RecipeToCookingMethod")
+  steps       CookingStep[]
 }
 
 model RecipeIngredient {
-  id            Int       @id @default(autoincrement()) 
-  recipeId      Int                                   
-  ingredientId  Int                                  
-  quantity      String                                
-  recipe        Recipe      @relation(fields: [recipeId], references: [id])
-  ingredient    Ingredient  @relation(fields: [ingredientId], references: [id])
+  id           Int        @id @default(autoincrement())
+  recipeId     Int
+  ingredientId Int
+  quantity     String
+  recipe       Recipe     @relation(fields: [recipeId], references: [id])
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
 }
 
 model IngredientTag {
-  id            Int       @id @default(autoincrement()) 
-  ingredientId  Int                                    
-  tagId         Int                                  
-  ingredient    Ingredient  @relation(fields: [ingredientId], references: [id])
-  tag           Tag         @relation(fields: [tagId], references: [id])
+  id           Int        @id @default(autoincrement())
+  ingredientId Int
+  tagId        Int
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  tag          Tag        @relation(fields: [tagId], references: [id])
 }
-

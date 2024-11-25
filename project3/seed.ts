@@ -26,46 +26,84 @@ async function processCSV(
 
 async function main() {
   try {
-    await processCSV("./employees.csv", async (data) => {
-      for (const emp of data) {
-        await prisma.employee.create({
+    await processCSV("./data/ingredient.csv", async (data) => {
+      for (const ingredient of data) {
+        await prisma.ingredient.create({
           data: {
-            emp_no: parseInt(emp.emp_no),
-            last_name: emp.last_name,
-            first_name: emp.first_name,
-            birth_date: new Date(emp.birth_date),
-            hire_date: new Date(emp.hire_date),
+            name: ingredient.name,
+           
           },
         });
       }
-      console.log("Employees have been inserted");
+  
     });
 
-    await processCSV("./departments.csv", async (data) => {
-      for (const dept of data) {
-        await prisma.department.create({
+    await processCSV("./data/tag.csv", async (data) => {
+      for (const tag of data) {
+        await prisma.tag.create({
           data: {
-            dept_no: dept.dept_no,
-            dept_name: dept.dept_name,
+            
+            name: tag.name,
           },
         });
       }
-      console.log("Departments have been inserted");
+     
     });
 
-    await processCSV("./dept_emp.csv", async (data) => {
-      for (const deptEmp of data) {
-        await prisma.deptEmp.create({
+    await processCSV("./data/cooking_method.csv", async (data) => {
+      for (const method of data) {
+        await prisma.cookingMethod.create({
           data: {
-            emp_no: parseInt(deptEmp.emp_no),
-            dept_no: deptEmp.dept_no,
-            from_date: new Date(deptEmp.from_date),
-            to_date: new Date(deptEmp.to_date),
+             name: method.name,
+           
           },
         });
       }
-      console.log("Department_Employee have been inserted");
+   
     });
+
+    
+    await processCSV("./data/ingredient_tag.csv", async (data) => {
+      for (const relation of data) {
+        await prisma.ingredientTag.create({
+          data: {
+            ingredientId: parseInt(relation.ingredientId),
+            tagId: parseInt(relation.tagId),
+           
+          },
+        });
+      }
+   
+    });
+    //
+    await processCSV("./data/cooking_step.csv", async (data) => {
+      for (const step of data) {
+        await prisma.cookingStep.create({
+          data: {
+            description:step.description,
+            order: parseInt(step.order),
+            recipeId: parseInt(step.recipeId),
+
+         
+            
+            
+
+            
+           
+          },
+        });
+      }
+   
+    });
+
+
+
+
+    //
+
+
+
+    
   } catch (e) {
     console.error("Error during database operation", e);
   } finally {
