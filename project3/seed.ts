@@ -49,6 +49,17 @@ async function main() {
       }
      
     });
+    await processCSV("./data/recipe.csv", async (data) => {
+      for (const recipe of data) {
+        await prisma.recipe.create({
+          data: {
+            title:recipe.title,
+            description: recipe.description,
+          }
+        });
+      }
+   
+    });
 
     await processCSV("./data/cooking_method.csv", async (data) => {
       for (const method of data) {
@@ -75,7 +86,7 @@ async function main() {
       }
    
     });
-    //
+    
     await processCSV("./data/cooking_step.csv", async (data) => {
       for (const step of data) {
         await prisma.cookingStep.create({
@@ -95,11 +106,39 @@ async function main() {
       }
    
     });
+    
 
 
 
+    
 
-    //
+    await processCSV("./data/recipe_ingredient.csv", async (data) => {
+      for (const recipe_ingredient of data) {
+        await prisma.recipeIngredient.create({
+          data: {
+            quantity:recipe_ingredient.quantity,
+            ingredientId: parseInt(recipe_ingredient.ingredientId),
+            recipeId : parseInt(recipe_ingredient. recipeId ),
+
+         
+            
+            
+
+            
+           
+          },
+        });
+      }
+   
+    });
+
+
+
+    
+    
+
+
+    
 
 
 
