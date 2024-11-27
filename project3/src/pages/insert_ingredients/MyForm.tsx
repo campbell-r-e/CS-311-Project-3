@@ -17,8 +17,9 @@ const isTagValid = tag_validator();
     if (isNameValid&&isTagValid) {
       setingredients("");
       settag("");
-      // Proceed with form submission
+     
       console.log("Form submitted:");
+
     }
     else{
       console.log("error")
