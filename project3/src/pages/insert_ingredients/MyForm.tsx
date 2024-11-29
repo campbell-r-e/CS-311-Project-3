@@ -7,6 +7,37 @@ const [tagError, setTagError] = useState("");
 const [ingredients, setingredients ] = useState("");
  
   const [tag, settag] = useState("");
+ 
+
+  async function updates(){
+
+ 
+    
+ 
+    try {
+      const response = await fetch("/api/insertingredient", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          tagname:tag,
+          ingredientname:ingredients,
+
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to update");
+      }
+  
+      const data = await response.json();
+      console.log("Update response:", data);
+      setingredients("");
+      settag("");
+    } catch (error) {
+      console.error("Error updating amount understood:", error);
+    }}
   
 
   const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
@@ -17,6 +48,7 @@ const isTagValid = tag_validator();
     if (isNameValid&&isTagValid) {
       setingredients("");
       settag("");
+      updates();
      
       console.log("Form submitted:");
 
