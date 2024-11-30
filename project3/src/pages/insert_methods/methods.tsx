@@ -26,6 +26,36 @@ const [method, setmethod ] = useState("");
     
    
   }
+  async function updates(){
+
+ 
+    
+ 
+    try {
+      const response = await fetch("/api/insertmethod", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+        name:method,
+
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to update ");
+      }
+  
+      const data = await response.json();
+      console.log("Update response:", data);
+     
+      setmethod("");
+    } catch (error) {
+      console.error("Error updating amount understood:", error);
+    }}
+  
+
   
   const name_validator = () => {
      
