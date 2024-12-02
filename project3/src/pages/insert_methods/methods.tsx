@@ -17,8 +17,8 @@ const [method, setmethod ] = useState("");
     if (isNameValid) {
       setmethod("");
     
-      // Proceed with form submission
-      console.log("Form submitted:");
+     
+    updates();
     }
     else{
       console.log("error")

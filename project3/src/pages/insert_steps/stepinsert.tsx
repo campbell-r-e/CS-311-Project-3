@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 
 
-export default function steps() {
+export default function Steps() {
   const [steps, setsteps] = useState("");
 
   const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
