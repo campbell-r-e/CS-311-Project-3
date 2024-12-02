@@ -21,8 +21,8 @@ const [ingredients, setingredients ] = useState("");
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ 
-          tagname:tag.toUpperCase,
-          ingredientname:ingredients.toUpperCase,
+          tagname:tag.toUpperCase(),
+          ingredientname:ingredients.toUpperCase(),
 
         }),
       });
