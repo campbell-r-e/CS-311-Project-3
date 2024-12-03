@@ -20,7 +20,7 @@ export default function Home() {
     <div>Enter how many steps you want in the recipe</div>
       <input
         type="text"
-        placeholder="Your fav number"
+        placeholder="Enter number of Steps"
         value={value}
         onChange={handleChange}
       />
