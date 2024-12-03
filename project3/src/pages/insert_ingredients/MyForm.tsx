@@ -7,38 +7,47 @@ const [tagError, setTagError] = useState("");
 const [ingredients, setingredients ] = useState("");
  
   const [tag, settag] = useState("");
+  const [datastate,setdataste]=useState("")
  
 
-  async function updates(){
-
- 
-    
- 
+  async function updates() {
     try {
       const response = await fetch("/api/insertingredient", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ 
-          tagname:tag.toUpperCase(),
-          ingredientname:ingredients.toUpperCase(),
-
+        body: JSON.stringify({
+          tagname: tag.toUpperCase(),
+          ingredientname: ingredients.toUpperCase(),
         }),
       });
   
+      const contentType = response.headers.get("Content-Type");
+  
       if (!response.ok) {
-        throw new Error("Failed to update");
+        if (contentType && contentType.includes("application/json")) {
+          const errorData = await response.json();
+          console.error("Error Response:", errorData);
+          setdataste(errorData.duplicateissue || errorData.error || "An unexpected error occurred.");
+        } else {
+          const errorText = await response.text();
+          console.error("Unexpected Response Format:", errorText);
+          setdataste("Both Tag and Ingredient are all ready in database.");
+        }
+        return; 
       }
   
       const data = await response.json();
-      console.log("Update response:", data);
+      console.log("Success Response:", data);
+      setdataste("Ingredient and tag added successfully!");
       setingredients("");
       settag("");
     } catch (error) {
-      console.error("Error updating amount understood:", error);
-    }}
-  
+      console.error("Error in updates function:", error);
+      setdataste("Failed to update due to a network or server error.");
+    }
+  }
 
   const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -157,7 +166,9 @@ const tag_validator = () => {
       </label>
       <input type="submit" />
       {tagError && <div className="error-message">{tagError}</div>}
+    <div>  {datastate && <div className="datastate">{datastate}</div>}</div>
     </form>
+
     
   )
   
