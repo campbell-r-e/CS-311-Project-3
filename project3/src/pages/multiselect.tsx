@@ -16,7 +16,9 @@ export default function AnimatedMulti() {
       components={animatedComponents}
       
       isMulti
-      options={optionsToDisplay}
+      options={optionsToDisplay} 
+      placeholder="Select options..." 
+      filterOption={null} 
     />
   );
 }

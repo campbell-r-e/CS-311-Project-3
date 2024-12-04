@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 export interface ColourOption {
-    readonly name: string;
-    readonly label: string;
+   value: string;
+    label: string;
   
    
   }
@@ -10,6 +10,7 @@ export interface ColourOption {
    name:string;
    
   }
+  
   async function fetchColourOptions(): Promise<ColourOption[]> {
     try {
       const response = await fetch('/api/options');
@@ -20,7 +21,7 @@ export interface ColourOption {
 
    
       return data.map(tag => ({
-        name: tag.name, 
+        value: tag.name, 
         label: tag.name,
        
     }));
@@ -33,10 +34,11 @@ export interface ColourOption {
   }
   export function useColourOptions() {
     const [colourOptions, setColourOptions] = useState<ColourOption[]>([]);
-  
+
     useEffect(() => {
       async function loadOptions() {
         const options = await fetchColourOptions();
+        console.log("Options to Display in Dropdown:", options); // Debug options
         setColourOptions(options || []);
       }
   
@@ -50,7 +52,7 @@ export interface ColourOption {
 
   
   export const staticColourOptions: readonly ColourOption[] =  [
-    { name: 'ocean',label:'ocean'},
+    { value:'OCEAN',label:'OCEAN'},
  
   
   
