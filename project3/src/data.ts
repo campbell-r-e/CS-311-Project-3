@@ -38,7 +38,6 @@ export interface ColourOption {
     useEffect(() => {
       async function loadOptions() {
         const options = await fetchColourOptions();
-        console.log("Options to Display in Dropdown:", options); // Debug options
         setColourOptions(options || []);
       }
   
