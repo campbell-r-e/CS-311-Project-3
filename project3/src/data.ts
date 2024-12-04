@@ -1,21 +1,61 @@
+import { useEffect, useState } from "react";
+
 export interface ColourOption {
-    readonly value: string;
+    readonly name: string;
     readonly label: string;
+  
    
   }
+  export interface tags{
+   name:string;
+   
+  }
+  async function fetchColourOptions(): Promise<ColourOption[]> {
+    try {
+      const response = await fetch('/api/options');
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data: tags[] = await response.json();
+
+   
+      return data.map(tag => ({
+        name: tag.name, 
+        label: tag.name,
+       
+    }));
+    
+    } catch (error) {
+      console.error("Failed to fetch questions:", error);
+      return [];
+     
+    }
+  }
+  export function useColourOptions() {
+    const [colourOptions, setColourOptions] = useState<ColourOption[]>([]);
   
-  export const colourOptions: readonly ColourOption[] = [
-    { value: 'ocean', label: 'Ocean'},
-    { value: 'blue', label: 'Blue'},
-    { value: 'purple', label: 'Purple' },
-    { value: 'red', label: 'Red'},
-    { value: 'orange', label: 'Orange' },
-    { value: 'yellow', label: 'Yellow' },
-    { value: 'green', label: 'Green'},
-    { value: 'forest', label: 'Forest' },
-    { value: 'slate', label: 'Slate'},
-    { value: 'silver', label: 'Silver'},
+    useEffect(() => {
+      async function loadOptions() {
+        const options = await fetchColourOptions();
+        setColourOptions(options || []);
+      }
+  
+      loadOptions();
+    }, []);
+  
+    return colourOptions;
+  }
+  
+
+
+  
+  export const staticColourOptions: readonly ColourOption[] =  [
+    { name: 'ocean',label:'ocean'},
+ 
+  
+  
   ];
   
 
   // modified from https://codesandbox.io/p/sandbox/2tnw6w?file=%2Fdocs%2Fdata.ts%3A15%2C31
+  
