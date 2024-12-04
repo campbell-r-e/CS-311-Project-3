@@ -15,6 +15,7 @@ export default function Home() {
       <div style={{ padding: '20px' }}>
       <h1>select 2-5 tags </h1>
       <AnimatedMulti />
+      
     </div>
 
     <div>Enter how many steps you want in the recipe</div>
