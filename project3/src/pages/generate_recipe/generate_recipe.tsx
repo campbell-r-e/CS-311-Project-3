@@ -4,17 +4,24 @@ import AnimatedMulti from "../multiselect"
 
 export default function Home() {
   const [value, setValue] = useState('');
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  console.log(selectedTags);
+
 
   const handleChange = (event: { target: { value: string; }; }) => {
     const result = event.target.value.replace(/\D/g, '');
 
     setValue(result);
   };
+  const handleTagSelection = (tags:string[]) => {
+    setSelectedTags(tags);
+  };
     return (
      <div>
       <div style={{ padding: '20px' }}>
       <h1>select 2-5 tags </h1>
-      <AnimatedMulti />
+      <AnimatedMulti onSelectionChange={handleTagSelection}/>
+       
       
     </div>
 
