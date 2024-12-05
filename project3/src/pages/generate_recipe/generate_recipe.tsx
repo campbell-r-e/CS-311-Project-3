@@ -2,41 +2,46 @@
 import React, { useState } from "react";
 import AnimatedMulti from "../multiselect"
 
-function stepsgeneratelogic(value:string){
-  if(parseInt(value)>4){
-   console.log("good")
-  }
-  else{
-    console.log("Handle exception")
-  }
 
-}
-function tag_logic(selectedTags:string[]){
-  if(selectedTags.length-1>4){
-    console.log("good")
-   }
-   else{
-     console.log("Handle exception")
-   }
- 
-}
+
 
 export default function Home() {
   const [value, setValue] = useState('');
+  const [error, setError] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   console.log(selectedTags);
 
+  const stepsgeneratelogic=()=>{
+    if(parseInt(value)>4){
 
+     setValue("");
+     }
+     else{
+      setValue("");
+      setError("You need to have more than 4 steps to generate a recipe")
+     }
+  }
+
+  const taglogic=()=>{
+    if(selectedTags.length-1>=5){
+
+     setSelectedTags([]);
+     }
+     else{
+      setSelectedTags([]);
+      setError("You need to have at least five tags to generate a recipe")
+     }
+  }
   const handleChange = (event: { target: { value: string; }; }) => {
     const result = event.target.value.replace(/\D/g, '');
-    stepsgeneratelogic(value)
+    stepsgeneratelogic()
 
     setValue(result);
   };
   const handleTagSelection = (tags:string[]) => {
 
     setSelectedTags(tags);
-    tag_logic(selectedTags);
+    taglogic();
   };
   
   
@@ -56,7 +61,7 @@ export default function Home() {
         value={value}
         onChange={handleChange}
       />
-    
+       <div>  {error && <div className="datastate">{error}</div>}</div>
      </div>
     
     );
