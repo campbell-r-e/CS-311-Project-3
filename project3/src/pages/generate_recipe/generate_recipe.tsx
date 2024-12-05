@@ -2,6 +2,25 @@
 import React, { useState } from "react";
 import AnimatedMulti from "../multiselect"
 
+function stepsgeneratelogic(value:string){
+  if(parseInt(value)>4){
+   console.log("good")
+  }
+  else{
+    console.log("Handle exception")
+  }
+
+}
+function tag_logic(selectedTags:string[]){
+  if(selectedTags.length-1>4){
+    console.log("good")
+   }
+   else{
+     console.log("Handle exception")
+   }
+ 
+}
+
 export default function Home() {
   const [value, setValue] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -10,12 +29,17 @@ export default function Home() {
 
   const handleChange = (event: { target: { value: string; }; }) => {
     const result = event.target.value.replace(/\D/g, '');
+    stepsgeneratelogic(value)
 
     setValue(result);
   };
   const handleTagSelection = (tags:string[]) => {
+
     setSelectedTags(tags);
+    tag_logic(selectedTags);
   };
+  
+  
     return (
      <div>
       <div style={{ padding: '20px' }}>
