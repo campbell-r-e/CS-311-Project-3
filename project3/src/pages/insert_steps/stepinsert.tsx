@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import {  useState } from 'react';
 
 
 
 export default function Steps() {
   const [steps, setsteps] = useState("");
+  const [update,setupdated]=useState("")
 
   const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -11,7 +12,7 @@ export default function Steps() {
   }
   async function updates(){
 
- 
+   setupdated(steps+" template");
     
  
     try {
@@ -21,7 +22,7 @@ export default function Steps() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ 
-          description:steps,
+          description:update,
           
 
         }),
@@ -41,7 +42,7 @@ export default function Steps() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label> Enter a cooking step as a template string in this format: &quot;beat [ingredient] for 10 minutes.&quot:
+      <label> Enter a cooking step as a template string:
         <input 
           type="text" 
           value={steps}
