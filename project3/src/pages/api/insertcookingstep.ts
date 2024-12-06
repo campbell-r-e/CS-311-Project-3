@@ -5,16 +5,20 @@ import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const prisma = new PrismaClient();
-
+export const config = {
+  api: {
+    bodyParser: true, 
+  },
+};
 
 export default async function handler(req:NextApiRequest,res: NextApiResponse) {
   try{
-    const { ingredientname} = req.body;
+    const {description} = req.body;
     
     const datainsert = await prisma.cookingStep.create({
       data: {
 
-        description: ingredientname + " template",
+        description: description,
         order: null,                  
         recipeId: undefined,
         

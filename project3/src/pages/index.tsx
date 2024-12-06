@@ -8,7 +8,7 @@ function insert_methods(){
   window.location.href = '/insert_methods/insert_methods'
 }
 function insert_steps(){
-  window.location.href = '/insert_methods/insert_methods'
+  window.location.href = '/insert_steps/insert_steps'
 }
 function generate(){
   window.location.href = '/generate_recipe/generate_recipe'

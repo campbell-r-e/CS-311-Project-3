@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 export const config = {
   api: {
-    bodyParser: true, // Ensure body parser is enabled
+    bodyParser: true, 
   },
 };
 
@@ -24,7 +24,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Ingredient name and tag are required." });
     }
 
-    // Check if ingredient with the tag already exists
+   
     const existingIngredient = await prisma.ingredient.findFirst({
       where: {
         name: ingredientname,

@@ -15,7 +15,7 @@ export default function Steps() {
     
  
     try {
-      const response = await fetch("/api/insertcookingsteps", {
+      const response = await fetch("/api/insertcookingstep", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
