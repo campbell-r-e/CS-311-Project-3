@@ -7,48 +7,56 @@ import AnimatedMulti from "../multiselect"
 
 export default function Home() {
   const [value, setValue] = useState();
-  const [update, setupdated] = useState();
+  const [steps, setSteps] = useState(0); // New state
+  console.log(steps);
   const [error, setError] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
-  console.log(selectedTags);
-
+  const [newtags, setnewtags] = useState([]);
+  console.log(newtags); 
 
   const stepsgeneratelogic=()=>{
-    if(update>4){
-
-     setupdated();
-     }
+    const numSteps = parseInt(value, 10);
+    if (isNaN(numSteps) || numSteps <= 4) {
+      setError("You need to have more than 4 steps to generate a recipe");
+    }
      else{
-      setupdated();
-      setError("You need to have more than 4 steps to generate a recipe")
+      setSteps(numSteps);
+      setError("")
      }
   }
 
   const taglogic=()=>{
-    if(selectedTags.length-1>=5){
+    const tagarray= selectedTags;
+    if(selectedTags.length<5){
 
-     setSelectedTags([]);
+      setError("You need to have at least five tags to generate a recipe");
      }
      else{
-      setSelectedTags([]);
-      setError("You need to have at least five tags to generate a recipe")
+      setnewtags(tagarray);
+      setError("");
      }
   }
   const handleChange = (event) => {
     const result = event.target.value;
    
-
-    setValue(result);
+    if (/^\d*$/.test(result)) {
+      setValue(result);
+    }
   };
   const handleTagSelection = (tags) => {
 
     setSelectedTags(tags);
-    taglogic();
+    
   };
   function button2(e) {
     e.preventDefault();
-    setupdated(value);
-    stepsgeneratelogic();
+    stepsgeneratelogic(); 
+    taglogic();
+    if (selectedTags.length >= 5 && parseInt(value, 10) > 4) {
+      setSelectedTags([]);
+      setnewtags([]);
+      setValue("");
+    }
   }
   
   
@@ -56,7 +64,12 @@ export default function Home() {
      <div>
       <div style={{ padding: '20px' }}>
       <h1>select 2-5 tags </h1>
-      <AnimatedMulti onSelectionChange={handleTagSelection}/>
+      <AnimatedMulti 
+      
+      onSelectionChange={handleTagSelection}
+     
+      selectedTags={selectedTags}
+      />
        
       
     </div>
