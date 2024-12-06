@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import makeAnimated from "react-select/animated"; // Import makeAnimated
+import makeAnimated from "react-select/animated"; 
 import {useColourOptions, staticColourOptions  } from '../data';
 import Select from "react-select";
 
