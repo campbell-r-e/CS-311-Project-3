@@ -14,7 +14,7 @@ export default function AnimatedMulti({ onSelectionChange,selectedTags }) {
   const animatedComponents = makeAnimated();
   const [internalValue, setInternalValue] = useState([]);
 
-
+   
   useEffect(() => {
     if (selectedTags.length === 0) {
       setInternalValue([]); 
