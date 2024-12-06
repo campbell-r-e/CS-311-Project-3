@@ -1,21 +1,12 @@
 id,description,order,recipeId
-7,Roast eggplants until tender (template),2,1
-8,Deep-fry tofu until crispy (template),3,1
-9,Add sumac to yogurt dressing (template),4,3
-10,Blend hummus to a creamy consistency (template),5,2
-11,Marinate meat with ginger and garlic (template),6,3
-12,Add soy sauce and stir until mixed (template),7,2
-13,Cook noodles until al dente (template),8,1
-14,Combine cornstarch and water for slurry (template),9,3
-15,Prepare shakshuka base with tomatoes (template),10,2
-16,Grill lamb skewers over open flame (template),1,3
-17,Bake pita bread in hot oven (template),2,3
-18,Cook chickpeas until soft (template),3,2
-19,Prepare wok for high-heat cooking (template),4,1
-20,Steam vegetables in a bamboo steamer (template),5,3
-21,Sprinkle za'atar over bread (template),6,2
-22,Pickle cucumbers for salad (template),7,2
-23,Mix tahini with lemon juice (template),8,1
-24,Simmer broth with star anise (template),9,2
-25,Sauté bok choy with sesame oil (template),10,3
-26,Chop scallions and set aside (template),1,2
+1,Step 1 for Kung Pao Chicken template,1,1
+2,Step 2 for Kung Pao Chicken template,2,1
+3,Step 3 for Kung Pao Chicken template,3,1
+4,Step 1 for Beef and Broccoli template,1,2
+5,Step 2 for Beef and Broccoli template,2,2
+6,Step 3 for Beef and Broccoli template,3,2
+7,Step 1 for Sweet and Sour Pork template,1,3
+8,Step 2 for Sweet and Sour Pork template,2,3
+9,Step 1 for Vegetable Lo Mein template,1,4
+10,Step 2 for Vegetable Lo Mein template,2,4
+11,Step 3 for Vegetable Lo Mein template,3,4

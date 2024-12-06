@@ -27,6 +27,7 @@ async function main() {
       for (const ingredient of data) {
         await prisma.ingredient.create({
           data: {
+            id:parseInt(ingredient.id),
             name: ingredient.name,
           },
         });

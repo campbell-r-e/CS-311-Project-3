@@ -1,7 +1,21 @@
 id,name
-1,VEGETABLE
-2,SPICE
-3,MEAT
-4,HERB
-5,Chinese
-6,Israeli
+1,Chicken_Tag
+2,Beef_Tag
+3,Pork_Tag
+4,Tofu_Tag
+5,Shrimp_Tag
+6,Egg_Tag
+7,Rice_Tag
+8,Noodles_Tag
+9,Garlic_Tag
+10,Ginger_Tag
+11,Soy Sauce_Tag
+12,Hoisin Sauce_Tag
+13,Vinegar_Tag
+14,Sesame Oil_Tag
+15,Carrot_Tag
+16,Cabbage_Tag
+17,Scallions_Tag
+18,Peppers_Tag
+19,Broccoli_Tag
+20,Mushrooms_Tag

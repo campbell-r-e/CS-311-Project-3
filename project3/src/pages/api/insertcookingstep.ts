@@ -14,7 +14,7 @@ export default async function handler(req:NextApiRequest,res: NextApiResponse) {
     const datainsert = await prisma.cookingStep.create({
       data: {
 
-        description: ingredientname,
+        description: ingredientname + " template",
         order: null,                  
         recipeId: undefined,
         
