@@ -6,18 +6,20 @@ import AnimatedMulti from "../multiselect"
 
 
 export default function Home() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState();
+  const [update, setupdated] = useState();
   const [error, setError] = useState('');
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedTags, setSelectedTags] = useState([]);
   console.log(selectedTags);
 
-  const stepsgeneratelogic=()=>{
-    if(parseInt(value)>4){
 
-     setValue("");
+  const stepsgeneratelogic=()=>{
+    if(update>4){
+
+     setupdated();
      }
      else{
-      setValue("");
+      setupdated();
       setError("You need to have more than 4 steps to generate a recipe")
      }
   }
@@ -32,17 +34,22 @@ export default function Home() {
       setError("You need to have at least five tags to generate a recipe")
      }
   }
-  const handleChange = (event: { target: { value: string; }; }) => {
-    const result = event.target.value.replace(/\D/g, '');
-    stepsgeneratelogic()
+  const handleChange = (event) => {
+    const result = event.target.value;
+   
 
     setValue(result);
   };
-  const handleTagSelection = (tags:string[]) => {
+  const handleTagSelection = (tags) => {
 
     setSelectedTags(tags);
     taglogic();
   };
+  function button2(e) {
+    e.preventDefault();
+    setupdated(value);
+    stepsgeneratelogic();
+  }
   
   
     return (
@@ -59,8 +66,13 @@ export default function Home() {
         type="text"
         placeholder="Enter number of Steps"
         value={value}
+        
         onChange={handleChange}
       />
+     <button onClick={button2}>
+  submit 
+     </button>
+
        <div>  {error && <div className="datastate">{error}</div>}</div>
      </div>
     
