@@ -7,7 +7,7 @@ import AnimatedMulti from "../multiselect"
 
 export default function Home() {
   const [value, setValue] = useState();
-  const [steps, setSteps] = useState(0); // New state
+  const [steps, setSteps] = useState(0); 
   console.log(steps);
   const [error, setError] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);

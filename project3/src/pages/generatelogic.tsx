@@ -1,10 +1,10 @@
 
 
 import React, { useEffect, useState } from "react";
-
+import steps from './generate_recipe/generate_recipe'
 export interface ColourOption {
-  value: string;
-   label: string;
+  name: string;
+  
  
   
  }
@@ -12,23 +12,25 @@ export interface ColourOption {
   name:string;
   
  }
+ const [descriptions, setDescriptions] = useState<string[]>([]);
  
  async function fetchColourOptions(): Promise<ColourOption[]> {
-   try {
-     const response = await fetch('/api/options');
-     if (!response.ok) {
-       throw new Error("Network response was not ok");
-     }
-     const data: tags[] = await response.json();
+  try {
+    const res = await fetch("/api/sendData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({step:steps}), // Send data to server
+    });
 
-  
-     return data.map(tag => ({
-       value: tag.name, 
-       label: tag.name,
-      
-   }));
-   
-   } catch (error) {
+    if (!res.ok) {
+      throw new Error("Failed to fetch data from server");
+    }
+
+    const data = await res.json(); // Receive response from server
+    setDescriptions(data.name); // Update state with server response
+  } catch (error) {
      console.error("Failed to fetch questions:", error);
      return [];
     
