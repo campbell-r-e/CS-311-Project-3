@@ -29,7 +29,10 @@ export default function Home() {
     const tagarray= selectedTags;
     if(selectedTags.length<5){
 
-      setError("You need to have at least five tags to generate a recipe");
+      setError("You need to have at least five tags to generate a recipe but less than 10");
+     }
+     if(selectedTags.length>10){
+      setError("You need to have at least five tags to generate a recipe but less than 10");
      }
      else{
       setnewtags(tagarray);

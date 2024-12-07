@@ -1,20 +1,16 @@
 
 
+import React, { useEffect, useState } from "react";
 
-export default function MyForm() {
 
- 
-
+const App = () => {
   
-
 
   return (
-    <div></div>
-
+  <div></div>
     
-  )
   
-};
+  );
+}
 
-
-// based on example from https://www.w3schools.com/react/react_forms.asp
+export default App;
