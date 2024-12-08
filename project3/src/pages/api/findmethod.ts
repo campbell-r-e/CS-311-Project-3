@@ -15,13 +15,14 @@ export default async function handler(req:NextApiRequest,res: NextApiResponse) {
   try{
     const randommethods: string[] = [];
     const {step} = req.body;
-    var x:number = 0;
+    let x:number = 0;
+    const totalMethods = await prisma.cookingMethod.count();
     while(x<step){
-        const randomIndex = Math.floor(Math.random() * step)+1;
+        const randomIndex = Math.floor(Math.random() * totalMethods)+1;
 
     
     
-    const findingmethod = await prisma.cookingMethod.findFirst({
+    const findingmethod = await prisma.cookingMethod.findUnique({
       where:{
        id:randomIndex,
 
@@ -44,7 +45,7 @@ export default async function handler(req:NextApiRequest,res: NextApiResponse) {
     
     x++;
 }
-res.status(200).json(randommethods);
+res.status(200).json( {methods:randommethods});
 }catch(error){
     res.status(500).json({ error: "Failed to fetch questions" });
     console.log(error)

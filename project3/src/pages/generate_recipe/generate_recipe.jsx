@@ -1,27 +1,38 @@
 
 import React, { useState } from "react";
 import AnimatedMulti from "../multiselect"
+import App from '../../components/generatelogic';
 
+//export let stepsfinal=0;
 
 
 
 export default function Home() {
   const [value, setValue] = useState();
+  const [showApp, setshowApp] = useState();
   const [steps, setSteps] = useState(0); 
-  console.log(steps);
+  const [stepsfinal, setStepsFinal] = useState(0);
+ 
+  
   const [error, setError] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
   const [newtags, setnewtags] = useState([]);
   console.log(newtags); 
 
+ 
+
   const stepsgeneratelogic=()=>{
     const numSteps = parseInt(value, 10);
     if (isNaN(numSteps) || numSteps <= 4) {
       setError("You need to have more than 4 steps to generate a recipe");
+      return false;
     }
      else{
       setSteps(numSteps);
+      setStepsFinal(numSteps);
+
       setError("")
+      return true;
      }
   }
 
@@ -30,13 +41,16 @@ export default function Home() {
     if(selectedTags.length<5){
 
       setError("You need to have at least five tags to generate a recipe but less than 10");
+      return false;
      }
-     if(selectedTags.length>10){
+     else if(selectedTags.length>10){
       setError("You need to have at least five tags to generate a recipe but less than 10");
+      return false;
      }
      else{
       setnewtags(tagarray);
       setError("");
+      return true;
      }
   }
   const handleChange = (event) => {
@@ -53,12 +67,14 @@ export default function Home() {
   };
   function button2(e) {
     e.preventDefault();
-    stepsgeneratelogic(); 
-    taglogic();
-    if (selectedTags.length >= 5 && parseInt(value, 10) > 4) {
-      setSelectedTags([]);
-      setnewtags([]);
-      setValue("");
+    const stepsValid = stepsgeneratelogic(); 
+    const tagsValid = taglogic(); 
+    
+    if (stepsValid && tagsValid) {
+      setSelectedTags([]); // Clear tags
+      setnewtags([]); // Clear newtags
+      setValue(''); // Clear the input
+      setshowApp(true);
     }
   }
   
@@ -90,6 +106,9 @@ export default function Home() {
      </button>
 
        <div>  {error && <div className="datastate">{error}</div>}</div>
+       
+       {showApp && <App stepsfinal={stepsfinal} />}
+      
      </div>
     
     );
