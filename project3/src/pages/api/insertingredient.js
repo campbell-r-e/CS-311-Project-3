@@ -51,14 +51,14 @@ export default async function handler(req, res) {
 
     console.log("Existing Tag:", existingTag);
 
-    // If the tag exists, connect it; otherwise, create a new tag
+   
     const tagOperation = existingTag
       ? { connect: { id: existingTag.id } }
       : { create: { name: tagname } };
 
     console.log("Tag Operation:", tagOperation);
 
-    // Create ingredient with the tag relationship
+   
     const datainsert = await prisma.ingredient.create({
       data: {
         name: ingredientname,
